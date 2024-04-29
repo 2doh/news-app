@@ -6,6 +6,7 @@ const NewsItemStyle = styled.div`
   gap: 15px;
   padding-left: 1rem;
   padding-right: 1rem;
+  align-items: center;
 
   .thumbnail {
     img {
@@ -15,6 +16,7 @@ const NewsItemStyle = styled.div`
       object-fit: cover;
     }
   }
+
   .contents {
     display: flex;
     flex-direction: column;
@@ -32,23 +34,24 @@ const NewsItemStyle = styled.div`
   }
 `;
 
-const NewsItem = () => {
+const NewsItem = ({ article }) => {
+  const { title, description, url, urlToImage, publishedAt } = article;
+
   return (
     <NewsItemStyle>
       <div className="thumbnail">
-        <a href="/" target="_blank" rel="noopnener noreferrer">
-          {/* rel="noopnener noreferrer" : 어느페이지 에서 왔는지 추적 불가 */}
-          <img src={`${process.env.PUBLIC_URL}/images/thumbnail.png`} />
+        <a href={url} target="blank" rel="noopener noreferrer">
+          <img src={urlToImage} alt="썸네일이미지" />
         </a>
       </div>
       <div className="contents">
         <h2>
-          <a href="/" target="_blank" rel="noopnener noreferrer">
-            <p>뉴스 제목</p>
+          <a href={url} target="blank" rel="noopener noreferrer">
+            {title}
           </a>
         </h2>
-        <p>뉴스 내용</p>
-        <p>날짜 : 2024-04-25</p>
+        <p>{description}</p>
+        <p>{publishedAt}</p>
       </div>
     </NewsItemStyle>
   );
