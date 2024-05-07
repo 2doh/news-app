@@ -39,6 +39,7 @@ const NewsList = ({ category }) => {
       try {
         const query = category === "all" ? "" : `&category=${category}`;
         const response = await axios.get(
+          // api 다 받아올 때 까지 기다려야 하기 떄문에 async 및 awiat 사용했음
           `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=${process.env.REACT_APP_API_KEY}`,
         );
         setArticles(response.data.articles);
